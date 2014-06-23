@@ -33,7 +33,7 @@ namespace :db do
 end
 
 def make_users
-  admin = User.create!(name:     "Example User",
+  admin = User.create!(name:     "Admin",
                        email:    "admin@admin.com",
                        password: "admin12345",
                        password_confirmation: "admin12345",
