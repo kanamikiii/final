@@ -1,0 +1,11 @@
+<li>
+  <span class="title"><%= wrap(entry.title) %></span>
+  <span class="body"><%= wrap(entry.body) %></span>
+  <span class="timestamp">
+    Posted <%= entry.created_at %> ago.
+  </span>
+  <% if current_user?(entry.user) %>
+    <%= link_to "delete", entry, method: :delete,
+                                    data: { confirm: "Are you sure?" } %>
+  <% end %>
+</li>

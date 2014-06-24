@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   # get 'users/new'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :entries, only: [:create, :destroy]
 
   root  'static_pages#home'
   match '/contact', to: 'static_pages#contact', via: 'get'
