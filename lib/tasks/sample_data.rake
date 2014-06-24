@@ -53,7 +53,8 @@ def make_entries
   users = User.limit(6).all
   10.times do
     title = Faker::Lorem.words(5).join(" ")
-    body = Faker::Lorem.paragraphs(2).join('\n')
+    #body = Faker::Lorem.paragraphs(2).join(" ")
+    body = Faker::Lorem.sentence(5)
     users.each do |user| 
       user.entries.create!(title: title, body: body)
     end
