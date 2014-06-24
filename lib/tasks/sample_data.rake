@@ -3,6 +3,7 @@ namespace :db do
   task populate: :environment do
     make_users
     make_entries
+    make_comments
     # make_relationships
     # admin = User.create!(name: "Example User",
     #              email: "admin@admin.com",
@@ -51,12 +52,26 @@ end
 
 def make_entries
   users = User.limit(6).all
-  10.times do
+  20.times do
     title = Faker::Lorem.words(5).join(" ")
     #body = Faker::Lorem.paragraphs(2).join(" ")
     body = Faker::Lorem.sentence(5)
     users.each do |user| 
       user.entries.create!(title: title, body: body)
+    end
+  end
+end
+
+def make_comments
+  users = User.limit(3).all
+  users.each do |user|
+    2.times do
+      content = Faker::Lorem.words(10).join(" ")
+      user.entries.each do |entry|
+        2.times do
+          entry.comments.create!(content: content)
+        end
+      end
     end
   end
 end

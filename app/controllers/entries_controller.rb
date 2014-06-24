@@ -2,7 +2,11 @@ class EntriesController < ApplicationController
   before_action :signed_in_user, only: [:create, :destroy]
   before_action :correct_user,   only: :destroy
 
-  def index
+  def show
+  	@user = User.find_by_id(params[:userid])
+  	@entry = Entry.find_by_id(params[:id])
+  	@comments = @entry.comments.paginate(page: params[:page])
+  	@comment = @entry.comments.build if signed_in?
   end
 
   def create

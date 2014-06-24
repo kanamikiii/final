@@ -1,0 +1,33 @@
+<% provide(:title, @user.name + " - " + @entry.title) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+  </aside>
+
+  <div class="span8">
+     <span class="title"><%= wrap(@entry.title) %></span>
+  	<span class="body"><%= wrap(@entry.body) %></span>
+  	<span class="timestamp"><%= @entry.created_at %></span>
+  </div>
+  
+  <div class="span4">
+    <% if @entry.comments.any? %>
+    <section>
+      <i>(<%= pluralize(@entry.comments.count, "comment") %>)</i>
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      <%= will_paginate @comments %>
+    </section>
+    <% end %>
+    <section>
+        <%= render 'shared/comment_form' %>
+    </section>
+  </div>
+
+</div>

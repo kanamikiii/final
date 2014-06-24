@@ -6,6 +6,10 @@ module SessionsHelper
     	self.current_user = user
   	end
 
+  	def current_entry
+    	@current_entry = Entry.find_by_id(params[:id])
+  	end
+
   	def current_user=(user)
     	@current_user = user
   	end

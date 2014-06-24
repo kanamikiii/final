@@ -1,0 +1,10 @@
+<%= form_for(@comment) do |f| %>
+  <h2>New Comment</h2>
+  <%= render 'shared/error_messages', object: f.object %>
+  <div class="field">
+    <%= f.text_area :content, placeholder: "New comment..." %>
+  </div>
+  <%= f.submit "Comment", class: "btn btn-large btn-primary" %>
+  <%#= button_to "Comment", user_entry_path, :userid => current_user.id,
+      :id => current_entry.id, :method => :get %>
+<% end %>
