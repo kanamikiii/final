@@ -6,8 +6,20 @@ module SessionsHelper
     	self.current_user = user
   	end
 
+  	def select_entry(entry)
+    	remember_token = Entry.new_remember_token
+    	cookies.permanent[:remember_token_entry] = remember_token
+    	entry.update_attribute(:remember_token, Entry.digest(remember_token))
+    	self.current_entry = entry
+  	end
+
+  	def current_entry=(entry)
+    	@current_entry = entry
+  	end
+
   	def current_entry
-    	@current_entry = Entry.find_by_id(params[:id])
+     	remember_token = Entry.digest(cookies[:remember_token_entry])
+    	@current_entry ||= Entry.find_by(remember_token: remember_token)
   	end
 
   	def current_user=(user)

@@ -3,8 +3,8 @@ class EntriesController < ApplicationController
   before_action :correct_user,   only: :destroy
 
   def show
-  	@user = User.find_by_id(params[:userid])
   	@entry = Entry.find_by_id(params[:id])
+  	select_entry(@entry)
   	@comments = @entry.comments.paginate(page: params[:page])
   	@comment = @entry.comments.build if signed_in?
   end

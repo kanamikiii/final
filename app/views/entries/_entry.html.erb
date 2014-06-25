@@ -4,13 +4,13 @@
   <span class="timestamp">
     Posted <%= entry.created_at %> ago.
   </span>
-  <% if current_user?(entry.user) %>
   <span class="link">
 	<ul>
+	<% if current_user?(entry.user) %>
     <li><%= link_to "Delete", entry, method: :delete,
                                     data: { confirm: "Are you sure?" } %></li>
-  	<li><%= link_to "View comment..", user_entry_path(userid: entry.user, id: entry.id) %></li>
+    <% end %>
+  	<li><%= link_to "View comment..", entry_path(id: entry.id) %></li>
   	</ul>
   </span>
-  <% end %>
 </li>

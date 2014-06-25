@@ -4,7 +4,7 @@ namespace :db do
     make_users
     make_entries
     make_comments
-    # make_relationships
+    make_relationships
     # admin = User.create!(name: "Example User",
     #              email: "admin@admin.com",
     #              password: "admin12345",
@@ -76,12 +76,12 @@ def make_comments
   end
 end
 
-# def make_relationships
-#  users = User.all
-#  user  = users.first
-#  followed_users = users[2..50]
-#  followers      = users[3..40]
-#  followed_users.each { |followed| user.follow!(followed) }
-#  followers.each      { |follower| follower.follow!(user) }
-# end
+def make_relationships
+ users = User.all
+ user  = users.first
+ followed_users = users[2..50]
+ followers      = users[3..40]
+ followed_users.each { |followed| user.follow!(followed) }
+ followers.each      { |follower| follower.follow!(user) }
+end
 
